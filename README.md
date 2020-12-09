@@ -13,6 +13,12 @@ To get started:
 1. Run `tuist up` to set up the project
 1. Run `make` to generate and then open the workspace
 
+## Projects
+
+This repository hosts several projects:
+
+* [Composable Architecture](/ComposableArchitecture)
+
 ## License
 
 [GPLv2](LICENSE)
