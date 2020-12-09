@@ -1,0 +1,5 @@
+*.xcodeproj/
+*.xcworkspace/
+Carthage
+Derived/
+build/
