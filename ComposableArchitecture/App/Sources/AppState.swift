@@ -5,11 +5,17 @@ struct AppState {
     var favorites: [EnglishWord]
 
     var currentLanguage: Language
-    var searchQuery: String
-    var searchResults: [EnglishWord]
+
+    var search: Search
 }
 
-typealias EnglishWord = String
+struct Search {
+    var searchQuery: String
+    var searchResults: [Word]
+}
+
+typealias EnglishWord = (String, Language)
+typealias Word = String
 
 enum Language {
     case en
