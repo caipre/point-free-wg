@@ -10,8 +10,8 @@ struct AppState {
 }
 
 struct Search {
-    var searchQuery: String
-    var searchResults: [Word]
+    var query: String
+    var results: [Word]
 }
 
 typealias EnglishWord = (String, Language)
