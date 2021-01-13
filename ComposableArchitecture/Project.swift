@@ -36,6 +36,19 @@ let p = Project(
       infoPlist: infop,
       sources: ["App/Sources/**"],
       resources: ["App/Resources/**"]
-    )
+    ),
+    Target(
+      name: "AppTests",
+      platform: .iOS,
+      product: .unitTests,
+      bundleId: "pointfree.composablearchitecture",
+      infoPlist: .default,
+      sources: ["App/Tests/**"],
+      resources: ["App/Resources/**"],
+      dependencies: [.target(name: "App")]
+    ),
+  ],
+  additionalFiles: [
+    "Project.swift"
   ]
 )
