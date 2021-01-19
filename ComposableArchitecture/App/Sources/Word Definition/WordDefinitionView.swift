@@ -1,15 +1,24 @@
-//
-
 import SwiftUI
 
 struct WordDefinitionView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  var body: some View {
+    VStack() {
+      HStack {
+        Text("Word")
+        Button("*") {
+          print("star me")
+        }
+      }
+      Spacer()
+      Text("definition")
+      Spacer()
     }
+  }
 }
 
-struct WordDefinitionView_Previews: PreviewProvider {
-    static var previews: some View {
-        WordDefinitionView()
-    }
+
+struct WordDefinitionViewModel {
+  let word: Word
+  let favorited: Bool
+  let record: French.Record
 }
