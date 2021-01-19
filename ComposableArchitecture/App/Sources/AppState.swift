@@ -17,7 +17,7 @@ struct Search {
 typealias EnglishWord = (String, Language)
 typealias Word = String
 
-enum Language {
+enum Language: String, CaseIterable {
   case en
   case jp
   case fr
