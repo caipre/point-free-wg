@@ -15,7 +15,7 @@ struct HomeView: View {
           .background(Color.gray)
         TextField("Search", text: $searchQuery)
           .background(Color.gray)
-        NavigationLink("today's word".localizedCapitalized, destination: EmptyView())
+        NavigationLink("today's word".localizedCapitalized, destination: WordDefinitionView())
         NavigationLink("Recently viewed".localizedCapitalized, destination: RecentsView())
         NavigationLink("Favorites".localizedCapitalized, destination: FavoritesView())
       }.padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
