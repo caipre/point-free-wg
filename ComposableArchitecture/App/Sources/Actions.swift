@@ -1,29 +1,29 @@
 enum AppAction {
-    case home(HomeAction)
-    case recents(RecentsAction)
-    case favorites(FavoritesAction)
-    case word(WordAction)
+  case home(HomeAction)
+  case recents(RecentsAction)
+  case favorites(FavoritesAction)
+  case word(WordAction)
 }
 
 enum HomeAction {
-    case didTapLanguage
-    case didTapTodaysWord
-    case didTapRecentlyViewed
-    case didTapFavorites
-    case didTapSearch
+  case didTapLanguage
+  case didTapTodaysWord
+  case didTapRecentlyViewed
+  case didTapFavorites
+  case didTapSearch
 }
 
 enum RecentsAction {
-    case didTapWord
-    case didTapClearAll
+  case didTapWord
+  case didTapClearAll
 }
 
 enum FavoritesAction {
-    case didTapWord
-    case didTapRemoveWord
+  case didTapWord
+  case didTapRemoveWord
 }
 
 enum WordAction {
-    case didTapFavorite
-    case didTapWord
+  case didTapFavorite
+  case didTapWord
 }
