@@ -8,6 +8,7 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 
+import SwiftUI
 import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -20,6 +21,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   ) {
     if let windowScene = scene as? UIWindowScene {
       let window = UIWindow(windowScene: windowScene)
+      let homeView = HomeView()
+      let hostingController = UIHostingController(rootView: homeView)
+      window.rootViewController = hostingController
       window.makeKeyAndVisible()
       self.window = window
     }
