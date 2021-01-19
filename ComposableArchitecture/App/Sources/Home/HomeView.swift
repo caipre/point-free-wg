@@ -17,7 +17,7 @@ struct HomeView: View {
           .background(Color.gray)
         NavigationLink("today's word".localizedCapitalized, destination: EmptyView())
         NavigationLink("Recently viewed".localizedCapitalized, destination: RecentsView())
-        NavigationLink("Favorites".localizedCapitalized, destination: EmptyView())
+        NavigationLink("Favorites".localizedCapitalized, destination: FavoritesView())
       }.padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
     }
   }
