@@ -3,5 +3,5 @@
 files=$(git diff --cached --name-only --diff-filter=AM | grep '.swift$')
 if [[ -n $files ]]; then
    swift-format -ir $files
-   echo $files | xargs -r git add
+   echo $files | xargs git add
 fi
