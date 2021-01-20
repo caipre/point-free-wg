@@ -19,7 +19,11 @@ jobs:
           bash <(curl -Ls https://install.tuist.io)
       - name: Setup
         run: |
-          tuist up
+          ls -lad /usr/local/bin
+          ls -la /usr/local/bin/swiftlint
+          brew list --formula | grep swift
+          whoami
+          sudo tuist up
       - name: Build App
         run: |
           tuist build App
