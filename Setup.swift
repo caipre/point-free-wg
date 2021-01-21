@@ -1,7 +1,7 @@
 import ProjectDescription
 
 let setup = Setup([
-  .homebrew(packages: ["swift-format", "swiftlint"]),
+  .homebrew(packages: ["swift-format"]),
   .custom(
     name: "git hooks",
     meet: ["./scripts/install-hooks.sh"],
