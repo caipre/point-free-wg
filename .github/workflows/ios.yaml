@@ -17,9 +17,6 @@ jobs:
       - name: Install Tuist
         run: |
           bash <(curl -Ls https://install.tuist.io)
-      - name: Setup
-        run: |
-          tuist up
       - name: Build App
         run: |
           tuist build App
