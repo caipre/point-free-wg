@@ -10,12 +10,7 @@ class FrenchTests: XCTestCase {
   }
 
   func testThatItIsDecodable() {
-    let url = Bundle.main.url(forResource: "fr.json", withExtension: "lzfse")!
-    let dataz = try! Data(contentsOf: url)
-    let data = try! (dataz as NSData).decompressed(using: .lzfse)
-
-    let decoded = try! decoder.decode(French.self, from: data as Data)
-
-    XCTAssert(!decoded.records.isEmpty)
+    let fr = Loaders.load(type: French.self, resource: "fr.json")
+    XCTAssert(!fr.records.isEmpty)
   }
 }
