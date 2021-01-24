@@ -12,7 +12,6 @@ struct SearchView: View {
         TextField("Word", text: $query)
           .autocapitalization(.none)
           .textFieldStyle(RoundedBorderTextFieldStyle())
-          .padding()
           .onChange(of: query) { query in
             results = searcher.search(query: query)
           }
@@ -20,12 +19,11 @@ struct SearchView: View {
 
       Divider()
 
-      let sortedResults =
-        results
-        .sorted(by: { (a, b) in a.score < b.score })
-      List(sortedResults, id: \.self) { result in
+      //      let sortedResults = results
+      //        .sorted(by: { (a, b) in a.score < b.score })
+      List(results, id: \.self) { result in
         Text(result.word)
-      }.padding()
+      }
 
       Spacer()
     }

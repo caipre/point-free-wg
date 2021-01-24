@@ -1,8 +1,7 @@
-import SwiftUI
+import Fuzzy
 
 struct Result: Hashable {
   let word: Word
-  let score: Float
 }
 
 protocol Searcher {
@@ -10,10 +9,18 @@ protocol Searcher {
 }
 
 class SearcherImpl: Searcher {
+  private let index: [Word]
+
+  init(index: [Word] = []) {
+    self.index = index
+  }
+
   func search(query: String) -> [Result] {
-    return [
-      Result(word: query, score: 1),
-      Result(word: query, score: 2),
-    ]
+    let matches =
+      index
+      .filter { Fuzzy.search(needle: query, haystack: $0) }
+      .prefix(25)  // performance optimization
+      .map { Result(word: $0) }
+    return matches
   }
 }

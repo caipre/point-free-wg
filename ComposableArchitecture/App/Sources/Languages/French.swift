@@ -24,5 +24,4 @@ struct French: Codable {
     /// Examples of usage in French, including translation to English
     let examples: String?
   }
-
 }
