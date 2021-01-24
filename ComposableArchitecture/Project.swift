@@ -23,6 +23,7 @@ let infop: InfoPlist = .extendingDefault(with: [
 let p = Project(
   name: "ComposableArchitecture",
   packages: [
+    .package(url: "https://github.com/khoi/fuzzy-swift", from: "0.1.0"),
     .package(url: "https://github.com/Quick/Nimble", from: "8.0.0"),
     .package(url: "https://github.com/Quick/Quick", from: "3.0.0"),
     .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "0.1.2"),
