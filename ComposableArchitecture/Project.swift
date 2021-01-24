@@ -39,7 +39,8 @@ let p = Project(
       sources: ["App/Sources/**"],
       resources: ["App/Resources/**"],
       dependencies: [
-        .package(product: "CasePaths")
+        .package(product: "CasePaths"),
+        .package(product: "Fuzzy"),
       ]
     ),
     Target(
