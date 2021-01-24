@@ -6,26 +6,26 @@ struct SearchView: View {
   @State var results: [Result] = []
 
   var body: some View {
-    VStack {
-      HStack {
-        Image(systemName: "magnifyingglass")
-        TextField("Word", text: $query)
-          .autocapitalization(.none)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
-          .onChange(of: query) { query in
-            results = searcher.search(query: query)
-          }
-      }.padding()
+    NavigationView {
+      VStack {
+        HStack {
+          Image(systemName: "magnifyingglass")
+          TextField("Word", text: $query)
+            .autocapitalization(.none)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .onChange(of: query) { query in
+              results = searcher.search(query: query)
+            }
+        }.padding()
 
-      Divider()
+        Spacer()
 
-      //      let sortedResults = results
-      //        .sorted(by: { (a, b) in a.score < b.score })
-      List(results, id: \.self) { result in
-        Text(result.word)
-      }
+        List(results, id: \.self) { result in
+          NavigationLink(result.word, destination: WordDefinitionView())
+        }
 
-      Spacer()
+        Spacer()
+      }.navigationBarTitle("Search")
     }
   }
 }
