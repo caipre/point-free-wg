@@ -25,6 +25,7 @@ let p = Project(
   packages: [
     .package(url: "https://github.com/Quick/Nimble", from: "8.0.0"),
     .package(url: "https://github.com/Quick/Quick", from: "3.0.0"),
+    .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "0.1.2"),
   ],
   settings: Settings(base: base),
   targets: [
@@ -35,7 +36,10 @@ let p = Project(
       bundleId: "pointfree.composablearchitecture",
       infoPlist: infop,
       sources: ["App/Sources/**"],
-      resources: ["App/Resources/**"]
+      resources: ["App/Resources/**"],
+      dependencies: [
+        .package(product: "CasePaths")
+      ]
     ),
     Target(
       name: "AppTests",
