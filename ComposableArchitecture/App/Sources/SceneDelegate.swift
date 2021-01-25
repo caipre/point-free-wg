@@ -21,8 +21,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   ) {
     if let windowScene = scene as? UIWindowScene {
       let window = UIWindow(windowScene: windowScene)
-      let fr = Loaders.load(type: French.self, resource: "fr.json")
-      let view = SearchView(searcher: SearcherImpl(index: fr.records.map(\.word)))
+      let delegate = UIApplication.shared.delegate as! AppDelegate
+      let view = HomeView(store: delegate.store)
       let hostingController = UIHostingController(rootView: view)
       window.rootViewController = hostingController
       window.makeKeyAndVisible()

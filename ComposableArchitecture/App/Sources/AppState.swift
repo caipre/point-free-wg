@@ -1,20 +1,23 @@
 struct AppState {
-  var todaysWord: EnglishWord
+  var todaysWord: (Word, Language) = ("default", .en)
 
-  var recents: [EnglishWord]
-  var favorites: [EnglishWord]
+  var recents: [Language: [Word]] = [:]
+  var favorites: [Language: [Word]] = [:]
 
-  var currentLanguage: Language
+  var currentLanguage: Language = .en
 
-  var search: Search
+  var search: Search = Search.empty
 }
 
 struct Search {
   var query: String
   var results: [Word]
+
+  static var empty: Search {
+    Search(query: "", results: [])
+  }
 }
 
-typealias EnglishWord = (String, Language)
 typealias Word = String
 
 enum Language: String, CaseIterable {

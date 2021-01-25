@@ -1,11 +1,14 @@
 import SwiftUI
 
 struct FavoritesView: View {
-  @State var words: [Word] = ["test", "test"]
+  //  @State var words: [Word] = ["test", "test"]
+  @ObservedObject var store: Store<AppState>
 
   var body: some View {
-    List(words, id: \.self) { element in
-      Text(element)
+    List {
+      ForEach(store.value.favorites[store.value.currentLanguage] ?? [], id: \.self) { item in
+        Text(item)
+      }
     }
   }
 }
