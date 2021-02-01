@@ -3,6 +3,8 @@ import Foundation
 enum Reducer {
   static func appReducer(value: inout AppState, action: AppAction) {
     switch action {
+    case .home(.didTapLanguage(let language)):
+      value.currentLanguage = language
     case .home(_):
       break
     case .recents(_):

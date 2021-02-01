@@ -6,7 +6,7 @@ enum AppAction {
 }
 
 enum HomeAction {
-  case didTapLanguage
+  case didTapLanguage(language: Language)
   case didTapTodaysWord
   case didTapRecentlyViewed
   case didTapFavorites
