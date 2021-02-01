@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-  @ObservedObject var store: Store<AppState>
+  @ObservedObject var store: Store<AppState, AppAction>
 
   //  @State private var selection: Language = .en
   //  @State private var searchQuery: String = ""
