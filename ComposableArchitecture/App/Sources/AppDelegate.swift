@@ -13,7 +13,10 @@ import UIKit
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  let store = Store<AppState>(initialValue: AppState())
+  let store = Store<AppState, AppAction>(
+    initialValue: AppState(),
+    reducer: Reducer.appReducer(value:action:)
+  )
   func application(
     _: UIApplication,
     didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
