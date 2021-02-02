@@ -41,6 +41,7 @@ let p = Project(
       dependencies: [
         .package(product: "CasePaths"),
         .package(product: "Fuzzy"),
+        .target(name: "ComposableArchitecture"),
       ]
     ),
     Target(
@@ -52,6 +53,29 @@ let p = Project(
       sources: ["App/Tests/**"],
       resources: ["App/Resources/**"],
       dependencies: [.target(name: "App")]
+    ),
+    Target(
+      name: "ComposableArchitecture",
+      platform: .iOS,
+      product: .staticLibrary,
+      bundleId: "pointfree.composablearchitecture",
+      infoPlist: .default,
+      sources: ["ComposableArchitecture/Sources/**"],
+      dependencies: [
+        .package(product: "CasePaths")
+      ]
+    ),
+    Target(
+      name: "ComposableArchitectureTests",
+      platform: .iOS,
+      product: .unitTests,
+      bundleId: "pointfree.composablearchitecture",
+      infoPlist: .default,
+      sources: ["ComposableArchitecture/Tests/**"],
+      dependencies: [
+        .package(product: "CasePaths"),
+        .target(name: "ComposableArchitecture"),
+      ]
     ),
   ],
   additionalFiles: [
