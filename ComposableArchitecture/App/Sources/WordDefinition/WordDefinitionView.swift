@@ -2,7 +2,7 @@ import SwiftUI
 
 struct WordDefinitionView: View {
   var body: some View {
-    VStack() {
+    VStack {
       HStack {
         Text("Word")
         Button("*") {
