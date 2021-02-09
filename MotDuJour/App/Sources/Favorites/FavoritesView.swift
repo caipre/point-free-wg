@@ -1,7 +1,7 @@
 import SwiftUI
+import ComposableArchitecture
 
 struct FavoritesView: View {
-  //  @State var words: [Word] = ["test", "test"]
   @ObservedObject var store: Store<AppState, AppAction>
 
   var body: some View {

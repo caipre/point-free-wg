@@ -1,3 +1,5 @@
+import Models
+
 struct AppState {
   var todaysWord: (Word, Language) = ("default", .en)
 
@@ -20,8 +22,3 @@ struct Search {
 
 typealias Word = String
 
-enum Language: String, CaseIterable {
-  case en
-  case jp
-  case fr
-}
