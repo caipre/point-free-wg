@@ -1,6 +1,6 @@
 import Foundation
 
-enum Reducer {
+enum AppReducer {
   static func appReducer(value: inout AppState, action: AppAction) {
     switch action {
     case .home(.didTapLanguage(let language)):

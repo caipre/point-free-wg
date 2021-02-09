@@ -9,13 +9,14 @@
 //  GNU General Public License for more details.
 
 import UIKit
+import ComposableArchitecture
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   let store = Store<AppState, AppAction>(
-    initialValue: AppState(),
-    reducer: Reducer.appReducer(value:action:)
+    with: AppState(),
+    reducer: AppReducer.appReducer(value:action:)
   )
   func application(
     _: UIApplication,

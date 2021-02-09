@@ -3,7 +3,7 @@ import ProjectDescription
 let ws = Workspace(
   name: "PointFree",
   projects: [
-    "ComposableArchitecture"
+    "MotDuJour"
   ],
   additionalFiles: [
     "README.md"

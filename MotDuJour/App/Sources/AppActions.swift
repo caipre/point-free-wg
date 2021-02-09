@@ -1,16 +1,10 @@
+import HomeFeature
+
 enum AppAction {
-  case home(HomeAction)
+  case home(HomeFeature.HomeAction)
   case recents(RecentsAction)
   case favorites(FavoritesAction)
   case word(WordAction)
-}
-
-enum HomeAction {
-  case didTapLanguage(language: Language)
-  case didTapTodaysWord
-  case didTapRecentlyViewed
-  case didTapFavorites
-  case didTapSearch
 }
 
 enum RecentsAction {

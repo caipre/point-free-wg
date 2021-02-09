@@ -17,7 +17,7 @@ To get started:
 
 This repository hosts several projects:
 
-* [Composable Architecture](/ComposableArchitecture)
+* [Mot du Jour](/MotDuJour)
 
 ## License
 
