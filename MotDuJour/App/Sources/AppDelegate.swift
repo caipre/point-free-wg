@@ -8,30 +8,33 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 
-import UIKit
 import ComposableArchitecture
+import UIKit
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  let store = Store<AppState, AppAction>(
-    with: AppState(),
-    reducer: AppReducer.appReducer(value:action:)
-  )
-  func application(
-    _: UIApplication,
-    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
-  ) -> Bool {
-    return true
-  }
+    let store = Store<AppState, AppAction>(
+        with: AppState(),
+        reducer: AppReducer.appReducer(value:action:)
+    )
+    func application(
+        _: UIApplication,
+        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        return true
+    }
 
-  // MARK: - UISceneSession Lifecycle
+    // MARK: - UISceneSession Lifecycle
 
-  func application(
-    _: UIApplication,
-    configurationForConnecting connectingSceneSession: UISceneSession,
-    options _: UIScene.ConnectionOptions
-  ) -> UISceneConfiguration {
-    UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-  }
+    func application(
+        _: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options _: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
+        UISceneConfiguration(
+            name: "Default Configuration",
+            sessionRole: connectingSceneSession.role
+        )
+    }
 }

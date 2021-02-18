@@ -1,14 +1,14 @@
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct FavoritesView: View {
-  @ObservedObject var store: Store<AppState, AppAction>
+    @ObservedObject var store: Store<AppState, AppAction>
 
-  var body: some View {
-    List {
-      ForEach(store.value.favorites[store.value.currentLanguage] ?? [], id: \.self) { item in
-        Text(item)
-      }
+    var body: some View {
+        List {
+            ForEach(store.value.favorites[store.value.currentLanguage] ?? [], id: \.self) { item in
+                Text(item)
+            }
+        }
     }
-  }
 }

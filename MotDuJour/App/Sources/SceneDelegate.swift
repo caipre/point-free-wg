@@ -8,32 +8,32 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 
+import CasePaths
 import HomeFeature
 import SwiftUI
 import UIKit
-import CasePaths
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-  var window: UIWindow?
+    var window: UIWindow?
 
-  func scene(
-    _ scene: UIScene,
-    willConnectTo _: UISceneSession,
-    options _: UIScene.ConnectionOptions
-  ) {
-    if let windowScene = scene as? UIWindowScene {
-      let window = UIWindow(windowScene: windowScene)
-      let delegate = UIApplication.shared.delegate as! AppDelegate
+    func scene(
+        _ scene: UIScene,
+        willConnectTo _: UISceneSession,
+        options _: UIScene.ConnectionOptions
+    ) {
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            let delegate = UIApplication.shared.delegate as! AppDelegate
 
-      let store = delegate.store.view(
-        value: { v in HomeState(language: v.currentLanguage) },
-        action: AppAction.home
-      )
-      let rootView = HomeView(store: store)
-      let hostingController = UIHostingController(rootView: rootView)
-      window.rootViewController = hostingController
-      window.makeKeyAndVisible()
-      self.window = window
+            let store = delegate.store.view(
+                value: { v in HomeState(language: v.currentLanguage) },
+                action: AppAction.home
+            )
+            let rootView = HomeView(store: store)
+            let hostingController = UIHostingController(rootView: rootView)
+            window.rootViewController = hostingController
+            window.makeKeyAndVisible()
+            self.window = window
+        }
     }
-  }
 }
