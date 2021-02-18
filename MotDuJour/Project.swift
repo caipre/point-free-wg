@@ -41,6 +41,7 @@ let p = Project(
       dependencies: [
         .package(product: "CasePaths"),
         .package(product: "Fuzzy"),
+        .target(name: "HomeFeature"),
         .target(name: "Models"),
         .target(name: "ComposableArchitecture"),
       ]
