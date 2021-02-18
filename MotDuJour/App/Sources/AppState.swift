@@ -19,5 +19,3 @@ struct Search {
         Search(query: "", results: [])
     }
 }
-
-typealias Word = String
