@@ -42,6 +42,7 @@ let p = Project(
                 .package(product: "CasePaths"),
                 .package(product: "Fuzzy"),
                 .target(name: "HomeFeature"),
+                .target(name: "FavoritesFeature"),
                 .target(name: "Models"),
                 .target(name: "ComposableArchitecture"),
             ]
@@ -58,20 +59,8 @@ let p = Project(
         ),
 
         // features
-        Target(
-            name: "HomeFeature",
-            platform: .iOS,
-            product: .staticFramework,
-            bundleId: "pointfree.motdujour",
-            infoPlist: .default,
-            sources: ["Features/Home/Sources/**"],
-            resources: ["Features/Home/Resources/**"],
-            dependencies: [
-                .package(product: "CasePaths"),
-                .target(name: "ComposableArchitecture"),
-                .target(name: "Models"),
-            ]
-        ),
+        Feature("Home"),
+        Feature("Favorites"),
 
         // libraries
         Target(
@@ -111,3 +100,24 @@ let p = Project(
         "Project.swift"
     ]
 )
+
+func Feature(_ name: String, dependencies: [TargetDependency] = []) -> Target {
+    let sources: SourceFilesList = ["Features/\(name)/Sources/**"]
+    let resources: [FileElement] = ["Features/\(name)/Resources/**"]
+    var dependencies = dependencies
+    dependencies.append(contentsOf: [
+        .package(product: "CasePaths"),
+        .target(name: "ComposableArchitecture"),
+        .target(name: "Models"),
+    ])
+    return Target(
+        name: name.appending("Feature"),
+        platform: .iOS,
+        product: .staticFramework,
+        bundleId: "pointfree.motdujour",
+        infoPlist: .default,
+        sources: sources,
+        resources: resources,
+        dependencies: dependencies
+    )
+}

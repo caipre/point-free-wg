@@ -1,4 +1,5 @@
 import SwiftUI
+import Models
 
 struct WordDefinitionView: View {
     var body: some View {

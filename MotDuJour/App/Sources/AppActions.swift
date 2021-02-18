@@ -1,7 +1,8 @@
 import HomeFeature
+import FavoritesFeature
 
 enum AppAction {
-    case home(HomeFeature.HomeAction)
+    case home(HomeAction)
     case recents(RecentsAction)
     case favorites(FavoritesAction)
     case word(WordAction)
@@ -10,11 +11,6 @@ enum AppAction {
 enum RecentsAction {
     case didTapWord
     case didTapClearAll
-}
-
-enum FavoritesAction {
-    case didTapWord
-    case didTapRemoveWord
 }
 
 enum WordAction {

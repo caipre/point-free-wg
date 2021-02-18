@@ -3,3 +3,5 @@ public enum Language: String, CaseIterable {
     case jp
     case fr
 }
+
+public typealias Word = String

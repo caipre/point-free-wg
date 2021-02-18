@@ -1,4 +1,5 @@
 import Fuzzy
+import Models
 
 struct Result: Hashable {
     let word: Word
