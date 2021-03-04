@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import Models
+import RecentsFeature
 import SwiftUI
 
 public struct HomeView: View {
@@ -30,7 +31,7 @@ public struct HomeView: View {
                         store.send(.didTapSearch(query: query))
                     }
                 //        NavigationLink("today's word".localizedCapitalized, destination: WordDefinitionView())
-                //        NavigationLink("Recently viewed".localizedCapitalized, destination: RecentsView())
+                        NavigationLink("Recently viewed".localizedCapitalized, destination: RecentsView())
                 //        NavigationLink("Favorites".localizedCapitalized, destination: FavoritesView(store: store))
             }.padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
         }
