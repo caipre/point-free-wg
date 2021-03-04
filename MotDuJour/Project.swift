@@ -103,7 +103,7 @@ let p = Project(
 
 func Feature(_ name: String, dependencies: [TargetDependency] = []) -> Target {
     let sources: SourceFilesList = ["Features/\(name)/Sources/**"]
-    let resources: [FileElement] = ["Features/\(name)/Resources/**"]
+    let resources: ResourceFileElements = ["Features/\(name)/Resources/**"]
     var dependencies = dependencies
     dependencies.append(contentsOf: [
         .package(product: "CasePaths"),
