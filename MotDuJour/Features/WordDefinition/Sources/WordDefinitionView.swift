@@ -1,8 +1,11 @@
 import SwiftUI
+import Languages
 import Models
 
-struct WordDefinitionView: View {
-    var body: some View {
+public struct WordDefinitionView: View {
+    public init() {}
+
+    public var body: some View {
         VStack {
             HStack {
                 Text("Word")

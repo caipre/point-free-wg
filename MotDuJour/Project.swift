@@ -44,6 +44,9 @@ let p = Project(
                 .target(name: "HomeFeature"),
                 .target(name: "FavoritesFeature"),
                 .target(name: "RecentsFeature"),
+                .target(name: "SearchFeature"),
+                .target(name: "WordDefinitionFeature"),
+                .target(name: "Languages"),
                 .target(name: "Models"),
                 .target(name: "ComposableArchitecture"),
             ]
@@ -60,11 +63,23 @@ let p = Project(
         ),
 
         // features
-        Feature("Home", dependencies: [.target(name: "RecentsFeature")]),
+        Feature("Home", dependencies: ["Favorites", "Recents", "WordDefinition"].map { .target(name: "\($0)Feature") }),
         Feature("Favorites"),
         Feature("Recents"),
+        Feature("Search", dependencies: [.target(name: "WordDefinitionFeature")]),
+        Feature("WordDefinition", dependencies: [.target(name: "Languages")]),
 
         // libraries
+        Target(
+            name: "Languages",
+            platform: .iOS,
+            product: .staticLibrary,
+            bundleId: "pointfree.motdujour",
+            infoPlist: .default,
+            sources: ["Languages/Sources/**"],
+            resources: ["Languages/Resources/**"]
+        ),
+
         Target(
             name: "Models",
             platform: .iOS,
