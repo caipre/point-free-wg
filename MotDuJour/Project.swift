@@ -43,6 +43,7 @@ let p = Project(
                 .package(product: "Fuzzy"),
                 .target(name: "HomeFeature"),
                 .target(name: "FavoritesFeature"),
+                .target(name: "RecentsFeature"),
                 .target(name: "Models"),
                 .target(name: "ComposableArchitecture"),
             ]
@@ -59,8 +60,9 @@ let p = Project(
         ),
 
         // features
-        Feature("Home"),
+        Feature("Home", dependencies: [.target(name: "RecentsFeature")]),
         Feature("Favorites"),
+        Feature("Recents"),
 
         // libraries
         Target(
