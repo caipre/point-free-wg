@@ -1,4 +1,5 @@
 import SwiftUI
+import WordDefinitionFeature
 
 struct SearchView: View {
     let searcher: Searcher
