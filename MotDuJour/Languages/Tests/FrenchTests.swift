@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import App
+@testable import Languages
 
 class FrenchTests: XCTestCase {
     var decoder: JSONDecoder!
