@@ -1,6 +1,6 @@
-import SwiftUI
 import Languages
 import Models
+import SwiftUI
 
 public struct WordDefinitionView: View {
     public init() {}

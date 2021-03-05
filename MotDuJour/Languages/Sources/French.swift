@@ -5,7 +5,7 @@ import Foundation
 public struct French: Codable {
 
     public let records: [Record]
-    
+
     public struct Record: Codable {
         /// The frequency index of the word (lower number indicates higher frequency)
         public let index: Int
