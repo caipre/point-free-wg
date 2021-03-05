@@ -52,18 +52,23 @@ let p = Project(
         ),
 
         // features
-        Feature("Home", dependencies: [
-            "Favorites",
-            "Recents",
-            "WordDefinition"
-        ].map { .target(name: "\($0)Feature") }
+        Feature(
+            "Home",
+            dependencies: [
+                "Favorites",
+                "Recents",
+                "WordDefinition",
+            ].map { .target(name: "\($0)Feature") }
         ),
         Feature("Favorites"),
         Feature("Recents"),
-        Feature("Search", dependencies: [
-            .target(name: "WordDefinitionFeature"),
-            .package(product: "Fuzzy"),
-        ]),
+        Feature(
+            "Search",
+            dependencies: [
+                .target(name: "WordDefinitionFeature"),
+                .package(product: "Fuzzy"),
+            ]
+        ),
         FeatureTests("Search"),
         Feature("WordDefinition", dependencies: [.target(name: "Languages")]),
 
@@ -152,7 +157,7 @@ func FeatureTests(_ name: String, dependencies: [TargetDependency] = []) -> Targ
     let sources: SourceFilesList = ["Features/\(name)/Tests/**"]
     var dependencies = dependencies
     dependencies.append(contentsOf: [
-        .target(name: "\(name)Feature"),
+        .target(name: "\(name)Feature")
     ])
     return Target(
         name: name.appending("FeatureTests"),

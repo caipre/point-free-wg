@@ -1,5 +1,5 @@
-import HomeFeature
 import FavoritesFeature
+import HomeFeature
 
 enum AppAction {
     case home(HomeAction)

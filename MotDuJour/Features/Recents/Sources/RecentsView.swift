@@ -1,5 +1,5 @@
-import SwiftUI
 import Models
+import SwiftUI
 
 public struct RecentsView: View {
     @State var words: [Word] = ["test", "test"]
