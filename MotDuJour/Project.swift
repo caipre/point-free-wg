@@ -40,7 +40,6 @@ let p = Project(
             resources: ["App/Resources/**"],
             dependencies: [
                 .package(product: "CasePaths"),
-                .package(product: "Fuzzy"),
                 .target(name: "HomeFeature"),
                 .target(name: "FavoritesFeature"),
                 .target(name: "RecentsFeature"),
@@ -51,22 +50,21 @@ let p = Project(
                 .target(name: "ComposableArchitecture"),
             ]
         ),
-        Target(
-            name: "AppTests",
-            platform: .iOS,
-            product: .unitTests,
-            bundleId: "pointfree.motdujour",
-            infoPlist: .default,
-            sources: ["App/Tests/**"],
-            resources: ["App/Resources/**"],
-            dependencies: [.target(name: "App")]
-        ),
 
         // features
-        Feature("Home", dependencies: ["Favorites", "Recents", "WordDefinition"].map { .target(name: "\($0)Feature") }),
+        Feature("Home", dependencies: [
+            "Favorites",
+            "Recents",
+            "WordDefinition"
+        ].map { .target(name: "\($0)Feature") }
+        ),
         Feature("Favorites"),
         Feature("Recents"),
-        Feature("Search", dependencies: [.target(name: "WordDefinitionFeature")]),
+        Feature("Search", dependencies: [
+            .target(name: "WordDefinitionFeature"),
+            .package(product: "Fuzzy"),
+        ]),
+        FeatureTests("Search"),
         Feature("WordDefinition", dependencies: [.target(name: "Languages")]),
 
         // libraries
@@ -78,6 +76,17 @@ let p = Project(
             infoPlist: .default,
             sources: ["Languages/Sources/**"],
             resources: ["Languages/Resources/**"]
+        ),
+        Target(
+            name: "LanguagesTests",
+            platform: .iOS,
+            product: .unitTests,
+            bundleId: "pointfree.motdujour",
+            infoPlist: .default,
+            sources: ["Languages/Tests/**"],
+            dependencies: [
+                .target(name: "Languages")
+            ]
         ),
 
         Target(
@@ -135,6 +144,23 @@ func Feature(_ name: String, dependencies: [TargetDependency] = []) -> Target {
         infoPlist: .default,
         sources: sources,
         resources: resources,
+        dependencies: dependencies
+    )
+}
+
+func FeatureTests(_ name: String, dependencies: [TargetDependency] = []) -> Target {
+    let sources: SourceFilesList = ["Features/\(name)/Tests/**"]
+    var dependencies = dependencies
+    dependencies.append(contentsOf: [
+        .target(name: "\(name)Feature"),
+    ])
+    return Target(
+        name: name.appending("FeatureTests"),
+        platform: .iOS,
+        product: .unitTests,
+        bundleId: "pointfree.motdujour",
+        infoPlist: .default,
+        sources: sources,
         dependencies: dependencies
     )
 }

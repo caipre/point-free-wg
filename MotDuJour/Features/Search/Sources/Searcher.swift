@@ -1,11 +1,11 @@
 import Fuzzy
 import Models
 
-struct Result: Hashable {
-    let word: Word
+public struct Result: Hashable {
+    public let word: Word
 }
 
-protocol Searcher {
+public protocol Searcher {
     func search(query: String) -> [Result]
 }
 

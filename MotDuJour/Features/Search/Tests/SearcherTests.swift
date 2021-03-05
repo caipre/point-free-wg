@@ -1,7 +1,7 @@
 import Models
 import XCTest
 
-@testable import App
+@testable import SearchFeature
 
 class SearcherTests: XCTestCase {
     var sut: Searcher!
