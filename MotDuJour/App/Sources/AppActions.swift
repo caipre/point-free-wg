@@ -22,4 +22,15 @@ extension AppAction {
         },
         embed: { AppAction.home($0) }
     )
+
+    static let favoritesPrism = Optics.Prism<AppAction, FavoritesAction>(
+        extract: { appAction in
+            if case let .favorites(action) = appAction {
+                return action
+            } else {
+                return nil
+            }
+        },
+        embed: { AppAction.favorites($0) }
+    )
 }
