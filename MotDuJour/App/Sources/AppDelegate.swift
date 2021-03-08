@@ -16,7 +16,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let store = Store<AppState, AppAction>(
         with: AppState(),
-        reducer: AppReducer.appReducer(value:action:)
+        reducer: AppReducer.appReducer
     )
     func application(
         _: UIApplication,

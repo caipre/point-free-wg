@@ -1,3 +1,4 @@
+import ComposableArchitecture
 import FavoritesFeature
 import HomeFeature
 import RecentsFeature
@@ -8,4 +9,17 @@ enum AppAction {
     case recents(RecentsAction)
     case favorites(FavoritesAction)
     case word(WordAction)
+}
+
+extension AppAction {
+    static let homePrism: Optics.Prism<AppAction, HomeAction> = Optics.Prism<AppAction, HomeAction>(
+        extract: { appAction in
+            if case let .home(action) = appAction {
+                return action
+            } else {
+                return nil
+            }
+        },
+        embed: { AppAction.home($0) }
+    )
 }
