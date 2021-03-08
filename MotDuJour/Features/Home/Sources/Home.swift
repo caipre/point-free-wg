@@ -20,10 +20,10 @@ public enum HomeAction {
 }
 
 public enum HomeReducer {
-    public static func reducer(value: inout HomeState, action: HomeAction) {
+    public static func reducer(value: inout Language, action: HomeAction) {
         switch action {
         case .didTapLanguage(let language):
-            value.language = language
+            value = language
         case .didTapTodaysWord:
             print("didTapTodaysWord")
         case .didTapRecentlyViewed:
