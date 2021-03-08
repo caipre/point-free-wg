@@ -1,3 +1,5 @@
+import ComposableArchitecture
+import HomeFeature
 import Models
 
 struct AppState {
@@ -18,4 +20,11 @@ struct Search {
     static var empty: Search {
         Search(query: "", results: [])
     }
+}
+
+extension AppState {
+    static let homeLens: Optics.Lens<AppState, HomeState> = Optics.Lens<AppState, HomeState>(
+        get: { appState in HomeState(language: appState.currentLanguage) },
+        set: { homeState, appState in appState.currentLanguage = homeState.language }
+    )
 }
