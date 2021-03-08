@@ -2,6 +2,7 @@ import ComposableArchitecture
 import FavoritesFeature
 import HomeFeature
 import Models
+import WordDefinitionFeature
 
 struct AppState {
     var todaysWord: (Word, Language) = ("default", .en)
@@ -12,6 +13,8 @@ struct AppState {
     var currentLanguage: Language = .en
 
     var search: Search = Search.empty
+
+    var wordToDefine: Word?
 }
 
 struct Search {
@@ -32,5 +35,10 @@ extension AppState {
     static let favoritesLens = Optics.Lens<AppState, FavoritesState>(
         get: { FavoritesState(language: $0.currentLanguage, favorites: $0.favorites) },
         set: { favorites, app in app.favorites = favorites.favorites }
+    )
+
+    static let wordLens = Optics.Lens<AppState, WordState>(
+        get: { WordState(word: $0.wordToDefine, favorites: $0.favorites) },
+        set: { word, app in app.favorites = word.favorites }
     )
 }

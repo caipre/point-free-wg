@@ -4,6 +4,7 @@ import FavoritesFeature
 import Foundation
 import HomeFeature
 import RecentsFeature
+import WordDefinitionFeature
 
 enum AppReducer {
     static let appReducer = ComposableArchitecture.combine(
@@ -21,6 +22,11 @@ enum AppReducer {
             reducer: RecentsFeature.reducer,
             lens: \AppState.recents,
             prism: /AppAction.recents
+        ),
+        Pullback.pullback(
+            reducer: WordDefinitionFeature.reducer,
+            lens: AppState.wordLens,
+            prism: AppAction.wordPrism
         )
     )
 }
