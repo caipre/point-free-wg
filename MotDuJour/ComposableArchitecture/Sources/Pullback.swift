@@ -12,12 +12,28 @@ public enum Optics {
     public struct Lens<GlobalValue, LocalValue> {
         public let get: (GlobalValue) -> LocalValue
         public let set: (LocalValue, inout GlobalValue) -> Void
+
+        public init(
+            get: @escaping (GlobalValue) -> LocalValue,
+            set: @escaping (LocalValue, inout GlobalValue) -> Void
+        ) {
+            self.get = get
+            self.set = set
+        }
     }
 
     // The CasePaths library provides Prisms for enums via reflection
     public struct Prism<GlobalAction, LocalAction> {
         public let extract: (GlobalAction) -> LocalAction?
         public let embed: (LocalAction) -> GlobalAction
+
+        public init(
+            extract: @escaping (GlobalAction) -> LocalAction?,
+            embed: @escaping (LocalAction) -> GlobalAction
+        ) {
+            self.extract = extract
+            self.embed = embed
+        }
     }
 }
 
