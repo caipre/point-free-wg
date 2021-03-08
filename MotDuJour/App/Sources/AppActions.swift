@@ -33,4 +33,15 @@ extension AppAction {
         },
         embed: { AppAction.favorites($0) }
     )
+
+    static let wordPrism = Optics.Prism<AppAction, WordAction>(
+        extract: { appAction in
+            if case let .word(action) = appAction {
+                return action
+            } else {
+                return nil
+            }
+        },
+        embed: { AppAction.word($0) }
+    )
 }
