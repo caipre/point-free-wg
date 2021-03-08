@@ -1,8 +1,8 @@
 import Models
 
 public struct FavoritesState {
-    let language: Language
-    let favorites: [Language: [Word]]
+    public let language: Language
+    public let favorites: [Language: [Word]]
 
     public init(
         language: Language,
@@ -16,4 +16,13 @@ public struct FavoritesState {
 public enum FavoritesAction {
     case didTapWord
     case didTapRemoveWord
+}
+
+public func reducer(value: inout FavoritesState, action: FavoritesAction) {
+    switch action {
+    case .didTapWord:
+        print("didTapWord")
+    case .didTapRemoveWord:
+        print("didTapRemoveWord")
+    }
 }
