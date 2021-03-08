@@ -1,18 +1,32 @@
+import CasePaths
+import ComposableArchitecture
+import FavoritesFeature
 import Foundation
+import HomeFeature
+import RecentsFeature
+import WordDefinitionFeature
 
 enum AppReducer {
-    static func appReducer(value: inout AppState, action: AppAction) {
-        switch action {
-        case .home(.didTapLanguage(let language)):
-            value.currentLanguage = language
-        case .home(_):
-            break
-        case .recents(_):
-            break
-        case .favorites(_):
-            break
-        case .word(_):
-            break
-        }
-    }
+    static let appReducer = ComposableArchitecture.combine(
+        Pullback.pullback(
+            reducer: HomeReducer.reducer,
+            lens: \AppState.currentLanguage,
+            prism: /AppAction.home
+        ),
+        Pullback.pullback(
+            reducer: FavoritesFeature.reducer,
+            lens: AppState.favoritesLens,
+            prism: AppAction.favoritesPrism
+        ),
+        Pullback.pullback(
+            reducer: RecentsFeature.reducer,
+            lens: \AppState.recents,
+            prism: /AppAction.recents
+        ),
+        Pullback.pullback(
+            reducer: WordDefinitionFeature.reducer,
+            lens: AppState.wordLens,
+            prism: AppAction.wordPrism
+        )
+    )
 }
