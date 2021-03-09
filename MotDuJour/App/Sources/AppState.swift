@@ -26,10 +26,11 @@ struct Search {
     }
 }
 
+// MARK: - Optics
 extension AppState {
-    static let homeLens: Optics.Lens<AppState, HomeState> = Optics.Lens<AppState, HomeState>(
-        get: { appState in HomeState(language: appState.currentLanguage) },
-        set: { homeState, appState in appState.currentLanguage = homeState.language }
+    static let homeLens: Optics.Lens<AppState, Language> = Optics.Lens<AppState, Language>(
+        get: { $0.currentLanguage },
+        set: { $1.currentLanguage = $0 }
     )
 
     static let favoritesLens = Optics.Lens<AppState, FavoritesState>(
@@ -37,8 +38,44 @@ extension AppState {
         set: { favorites, app in app.favorites = favorites.favorites }
     )
 
+    static let recentsLens = Optics.Lens<AppState, [Language: [Word]]>(
+        get: { $0.recents },
+        set: { $1.recents = $0 }
+    )
+
     static let wordLens = Optics.Lens<AppState, WordState>(
         get: { WordState(word: $0.wordToDefine, favorites: $0.favorites) },
         set: { word, app in app.favorites = word.favorites }
     )
+}
+
+extension AppState {
+    var homeState: HomeState {
+        get {
+            HomeState(language: self.currentLanguage)
+        }
+        set {
+            self.currentLanguage = newValue.language
+        }
+    }
+
+    var favoritesState: FavoritesState {
+        get {
+            FavoritesState(language: self.currentLanguage, favorites: self.favorites)
+        }
+        set {
+            self.currentLanguage = newValue.language
+            self.favorites = newValue.favorites
+        }
+    }
+
+    var wordState: WordState {
+        get {
+            WordState(word: self.wordToDefine, favorites: self.favorites)
+        }
+        set {
+            self.wordToDefine = newValue.word
+            self.favorites = newValue.favorites
+        }
+    }
 }
