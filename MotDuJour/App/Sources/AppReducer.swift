@@ -29,4 +29,27 @@ enum AppReducer {
             prism: AppAction.wordPrism
         )
     )
+
+    static let opticsAppReducer = ComposableArchitecture.combine(
+        Pullback.pullback(
+            reducer: HomeFeature.reducer,
+            lens: AppState.homeLens,
+            prism: AppAction.homePrism
+        ),
+        Pullback.pullback(
+            reducer: FavoritesFeature.reducer,
+            lens: AppState.favoritesLens,
+            prism: AppAction.favoritesPrism
+        ),
+        Pullback.pullback(
+            reducer: RecentsFeature.reducer,
+            lens: AppState.recentsLens,
+            prism: AppAction.recentsPrism
+        ),
+        Pullback.pullback(
+            reducer: WordDefinitionFeature.reducer,
+            lens: AppState.wordLens,
+            prism: AppAction.wordPrism
+        )
+    )
 }
