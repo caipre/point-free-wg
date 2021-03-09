@@ -19,19 +19,18 @@ public enum HomeAction {
     case didTapSearch(query: String)
 }
 
-public enum HomeReducer {
-    public static func reducer(value: inout Language, action: HomeAction) {
-        switch action {
-        case .didTapLanguage(let language):
-            value = language
-        case .didTapTodaysWord:
-            print("didTapTodaysWord")
-        case .didTapRecentlyViewed:
-            print("didTapRecentlyViewed")
-        case .didTapFavorites:
-            print("didTapFavorites")
-        case .didTapSearch(let query):
-            print(query)
-        }
+
+public func reducer(value: inout Language, action: HomeAction) {
+    switch action {
+    case .didTapLanguage(let language):
+        value = language
+    case .didTapTodaysWord:
+        print("didTapTodaysWord")
+    case .didTapRecentlyViewed:
+        print("didTapRecentlyViewed")
+    case .didTapFavorites:
+        print("didTapFavorites")
+    case .didTapSearch(let query):
+        print(query)
     }
 }
