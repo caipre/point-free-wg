@@ -9,7 +9,7 @@ import WordDefinitionFeature
 enum AppReducer {
     static let appReducer = ComposableArchitecture.combine(
         Pullback.pullback(
-            reducer: HomeReducer.reducer,
+            reducer: HomeFeature.reducer,
             lens: \AppState.currentLanguage,
             prism: /AppAction.home
         ),
