@@ -15,8 +15,8 @@ enum AppReducer {
         ),
         Pullback.pullback(
             reducer: FavoritesFeature.reducer,
-            lens: AppState.favoritesLens,
-            prism: AppAction.favoritesPrism
+            lens: \AppState.favoritesState,
+            prism: /AppAction.favorites
         ),
         Pullback.pullback(
             reducer: RecentsFeature.reducer,
@@ -25,8 +25,8 @@ enum AppReducer {
         ),
         Pullback.pullback(
             reducer: WordDefinitionFeature.reducer,
-            lens: AppState.wordLens,
-            prism: AppAction.wordPrism
+            lens: \AppState.wordState,
+            prism: /AppAction.word
         )
     )
 
