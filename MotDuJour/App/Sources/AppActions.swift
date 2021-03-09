@@ -11,6 +11,7 @@ enum AppAction {
     case word(WordAction)
 }
 
+// MARK: - Optics
 extension AppAction {
     static let homePrism: Optics.Prism<AppAction, HomeAction> = Optics.Prism<AppAction, HomeAction>(
         extract: { appAction in
@@ -32,6 +33,17 @@ extension AppAction {
             }
         },
         embed: { AppAction.favorites($0) }
+    )
+
+    static let recentsPrism = Optics.Prism<AppAction, RecentsAction>(
+        extract: { appAction in
+            if case let .recents(action) = appAction {
+                return action
+            } else {
+                return nil
+            }
+        },
+        embed: { AppAction.recents($0) }
     )
 
     static let wordPrism = Optics.Prism<AppAction, WordAction>(

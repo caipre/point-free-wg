@@ -28,14 +28,19 @@ struct Search {
 
 // MARK: - Optics
 extension AppState {
-    static let homeLens: Optics.Lens<AppState, HomeState> = Optics.Lens<AppState, HomeState>(
-        get: { appState in HomeState(language: appState.currentLanguage) },
-        set: { homeState, appState in appState.currentLanguage = homeState.language }
+    static let homeLens: Optics.Lens<AppState, Language> = Optics.Lens<AppState, Language>(
+        get: { $0.currentLanguage },
+        set: { $1.currentLanguage = $0 }
     )
 
     static let favoritesLens = Optics.Lens<AppState, FavoritesState>(
         get: { FavoritesState(language: $0.currentLanguage, favorites: $0.favorites) },
         set: { favorites, app in app.favorites = favorites.favorites }
+    )
+
+    static let recentsLens = Optics.Lens<AppState, [Language: [Word]]>(
+        get: { $0.recents },
+        set: { $1.recents = $0 }
     )
 
     static let wordLens = Optics.Lens<AppState, WordState>(
