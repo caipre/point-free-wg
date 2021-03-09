@@ -48,3 +48,34 @@ extension AppState {
         set: { word, app in app.favorites = word.favorites }
     )
 }
+
+extension AppState {
+    var homeState: HomeState {
+        get {
+            HomeState(language: self.currentLanguage)
+        }
+        set {
+            self.currentLanguage = newValue.language
+        }
+    }
+
+    var favoritesState: FavoritesState {
+        get {
+            FavoritesState(language: self.currentLanguage, favorites: self.favorites)
+        }
+        set {
+            self.currentLanguage = newValue.language
+            self.favorites = newValue.favorites
+        }
+    }
+
+    var wordState: WordState {
+        get {
+            WordState(word: self.wordToDefine, favorites: self.favorites)
+        }
+        set {
+            self.wordToDefine = newValue.word
+            self.favorites = newValue.favorites
+        }
+    }
+}
