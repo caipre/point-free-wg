@@ -12,7 +12,11 @@ public struct FavoritesView: View {
         List {
             ForEach(store.value.favorites[store.value.language] ?? [], id: \.self) { item in
                 Text(item)
+                    .onTapGesture {
+                        self.store.send(.didTapWord(word: item))
+                    }
             }
+            .onDelete(perform: { self.store.send(.didTapRemoveWord(indexSet: $0)) })
         }
     }
 }
