@@ -9,6 +9,7 @@
 //  GNU General Public License for more details.
 
 import CasePaths
+import FavoritesFeature
 import HomeFeature
 import SwiftUI
 import UIKit
@@ -29,7 +30,16 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 value: { v in HomeState(language: v.currentLanguage) },
                 action: AppAction.home
             )
-            let rootView = HomeView(store: store)
+            let favoritesStore = delegate.store.view(
+                value: { v in
+                    FavoritesState(
+                        language: v.currentLanguage,
+                        favorites: v.favorites
+                    )
+                },
+                action: AppAction.favorites
+            )
+            let rootView = HomeView(store: store, favoritesStore: favoritesStore)
             let hostingController = UIHostingController(rootView: rootView)
             window.rootViewController = hostingController
             window.makeKeyAndVisible()

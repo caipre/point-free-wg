@@ -8,8 +8,14 @@ import WordDefinitionFeature
 public struct HomeView: View {
     @ObservedObject var store: Store<HomeState, HomeAction>
 
-    public init(store: Store<HomeState, HomeAction>) {
+    private let favoritesStore: Store<FavoritesState, FavoritesAction>
+
+    public init(
+        store: Store<HomeState, HomeAction>,
+        favoritesStore: Store<FavoritesState, FavoritesAction>
+    ) {
         self.store = store
+        self.favoritesStore = favoritesStore
     }
 
     @State private var searchQuery: String = ""
@@ -40,7 +46,10 @@ public struct HomeView: View {
                     destination: WordDefinitionView()
                 )
                 NavigationLink("Recently viewed".localizedCapitalized, destination: RecentsView())
-                //                        NavigationLink("Favorites".localizedCapitalized, destination: FavoritesView(store: store))
+                NavigationLink(
+                    "Favorites".localizedCapitalized,
+                    destination: FavoritesView(favoritesStore)
+                )
             }.padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
         }
     }
