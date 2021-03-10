@@ -1,8 +1,9 @@
 import Models
+import SwiftUI
 
 public struct FavoritesState {
     public let language: Language
-    public let favorites: [Language: [Word]]
+    public var favorites: [Language: [Word]]
 
     public init(
         language: Language,
@@ -14,15 +15,17 @@ public struct FavoritesState {
 }
 
 public enum FavoritesAction {
-    case didTapWord
-    case didTapRemoveWord
+    case didTapWord(word: Word)
+    case didTapRemoveWord(indexSet: IndexSet)
 }
 
 public func reducer(value: inout FavoritesState, action: FavoritesAction) {
     switch action {
-    case .didTapWord:
-        print("didTapWord")
-    case .didTapRemoveWord:
-        print("didTapRemoveWord")
+    case .didTapWord(let word):
+        print("side effect on \(word)!")
+    case .didTapRemoveWord(let indexSet):
+        var array = value.favorites[value.language]
+        indexSet.forEach { array?.remove(at: $0) }
+        value.favorites[value.language] = array
     }
 }
