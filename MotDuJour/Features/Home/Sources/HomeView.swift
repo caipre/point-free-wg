@@ -12,21 +12,24 @@ public struct HomeView: View {
         self.store = store
     }
 
-    @State private var selection: Language = .en
     @State private var searchQuery: String = ""
+
+    private var pickerBinding: Binding<Language> {
+        Binding<Language>(
+            get: { self.store.value.language },
+            set: { language in self.store.send(.didTapLanguage(language: language)) }
+        )
+    }
 
     public var body: some View {
         NavigationView {
             VStack {
-                Picker("Language picker", selection: $selection) {
+                Picker("Language picker", selection: pickerBinding) {
                     ForEach(Language.allCases, id: \.self) { element in
                         Text(element.rawValue)
                     }
                 }.pickerStyle(MenuPickerStyle())
                     .background(Color.gray)
-                    .onChange(of: selection) { selection in
-                        store.send(.didTapLanguage(language: selection))
-                    }
                 TextField("Search", text: $searchQuery)
                     .background(Color.gray)
                     .onChange(of: searchQuery) { query in
