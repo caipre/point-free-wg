@@ -45,7 +45,6 @@ public struct HomeView: View {
                     "today's word".localizedCapitalized,
                     destination: WordDefinitionView()
                 )
-                NavigationLink("Recently viewed".localizedCapitalized, destination: RecentsView())
                 NavigationLink(
                     "Favorites".localizedCapitalized,
                     destination: FavoritesView(favoritesStore)
