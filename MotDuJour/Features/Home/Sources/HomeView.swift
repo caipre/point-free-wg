@@ -1,7 +1,6 @@
 import ComposableArchitecture
 import FavoritesFeature
 import Models
-import RecentsFeature
 import SwiftUI
 import WordDefinitionFeature
 

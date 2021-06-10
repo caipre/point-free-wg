@@ -11,7 +11,7 @@ public struct FavoritesView: View {
     public var body: some View {
         List {
             ForEach(store.value.favorites[store.value.language] ?? [], id: \.self) { item in
-                Text(item)
+                Text(item.word)
                     .onTapGesture {
                         self.store.send(.didTapWord(word: item))
                     }

@@ -3,7 +3,6 @@ import ComposableArchitecture
 import FavoritesFeature
 import Foundation
 import HomeFeature
-import RecentsFeature
 import WordDefinitionFeature
 
 enum AppReducer {
@@ -17,11 +16,6 @@ enum AppReducer {
             reducer: FavoritesFeature.reducer,
             lens: \AppState.favoritesState,
             prism: /AppAction.favorites
-        ),
-        Pullback.pullback(
-            reducer: RecentsFeature.reducer,
-            lens: \AppState.recents,
-            prism: /AppAction.recents
         ),
         Pullback.pullback(
             reducer: WordDefinitionFeature.reducer,
@@ -40,11 +34,6 @@ enum AppReducer {
             reducer: FavoritesFeature.reducer,
             lens: AppState.favoritesLens,
             prism: AppAction.favoritesPrism
-        ),
-        Pullback.pullback(
-            reducer: RecentsFeature.reducer,
-            lens: AppState.recentsLens,
-            prism: AppAction.recentsPrism
         ),
         Pullback.pullback(
             reducer: WordDefinitionFeature.reducer,
