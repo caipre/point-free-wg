@@ -4,10 +4,9 @@ import HomeFeature
 import Models
 import WordDefinitionFeature
 
-struct AppState {
-    var todaysWord: (Word, Language) = ("default", .en)
+struct AppState: Codable {
+    var todaysWord = Word(word: "default", language: Language.en)
 
-    var recents: [Language: [Word]] = [:]
     var favorites: [Language: [Word]] = [:]
 
     var currentLanguage: Language = .en
@@ -17,7 +16,7 @@ struct AppState {
     var wordToDefine: Word?
 }
 
-struct Search {
+struct Search: Codable {
     var query: String
     var results: [Word]
 
@@ -36,11 +35,6 @@ extension AppState {
     static let favoritesLens = Optics.Lens<AppState, FavoritesState>(
         get: { FavoritesState(language: $0.currentLanguage, favorites: $0.favorites) },
         set: { favorites, app in app.favorites = favorites.favorites }
-    )
-
-    static let recentsLens = Optics.Lens<AppState, [Language: [Word]]>(
-        get: { $0.recents },
-        set: { $1.recents = $0 }
     )
 
     static let wordLens = Optics.Lens<AppState, WordState>(

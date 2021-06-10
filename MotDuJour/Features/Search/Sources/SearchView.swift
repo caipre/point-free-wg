@@ -22,7 +22,7 @@ struct SearchView: View {
                 Spacer()
 
                 List(results, id: \.self) { result in
-                    NavigationLink(result.word, destination: WordDefinitionView())
+                    NavigationLink(result.word.word, destination: WordDefinitionView())
                 }
 
                 Spacer()

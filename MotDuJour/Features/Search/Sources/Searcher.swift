@@ -19,7 +19,7 @@ class SearcherImpl: Searcher {
     func search(query: String) -> [Result] {
         let matches =
             index
-            .filter { Fuzzy.search(needle: query, haystack: $0) }
+            .filter { Fuzzy.search(needle: query, haystack: $0.word) }
             .prefix(25)  // performance optimization
             .map { Result(word: $0) }
         return matches
