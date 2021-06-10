@@ -4,9 +4,15 @@ import HomeFeature
 import WordDefinitionFeature
 
 enum AppAction {
+    case app(AppDelegateAction)
     case home(HomeAction)
     case favorites(FavoritesAction)
     case word(WordAction)
+}
+
+// Leaving this here so we don't forget.
+enum AppDelegateAction {
+    case willTerminate
 }
 
 // MARK: - Optics
