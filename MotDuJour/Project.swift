@@ -42,7 +42,6 @@ let p = Project(
                 .package(product: "CasePaths"),
                 .target(name: "HomeFeature"),
                 .target(name: "FavoritesFeature"),
-                .target(name: "RecentsFeature"),
                 .target(name: "SearchFeature"),
                 .target(name: "WordDefinitionFeature"),
                 .target(name: "Languages"),
@@ -56,12 +55,10 @@ let p = Project(
             "Home",
             dependencies: [
                 "Favorites",
-                "Recents",
                 "WordDefinition",
             ].map { .target(name: "\($0)Feature") }
         ),
         Feature("Favorites"),
-        Feature("Recents"),
         Feature(
             "Search",
             dependencies: [
