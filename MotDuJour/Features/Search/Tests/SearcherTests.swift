@@ -15,3 +15,9 @@ class SearcherTests: XCTestCase {
         XCTAssertEqual(actual, expected)
     }
 }
+
+extension Word: ExpressibleByStringLiteral {
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(word: value, language: Language.en)
+    }
+}
