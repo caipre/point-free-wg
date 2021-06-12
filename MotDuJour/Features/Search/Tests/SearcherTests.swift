@@ -9,15 +9,15 @@ class SearcherTests: XCTestCase {
     }
 
     func testThatItMatchesFuzzily() {
-        sut = SearcherImpl(index: ["one", "two", "three"])
+        sut = SearcherImpl(index: [Word("one"), Word("two"), Word("three")])
         let actual = sut.search(query: "o").map(\.word)
-        let expected: [Word] = ["one", "two"]
+        let expected: [Word] = [Word("one"), Word("two")]
         XCTAssertEqual(actual, expected)
     }
 }
 
-extension Word: ExpressibleByStringLiteral {
-    public init(stringLiteral value: StringLiteralType) {
-        self.init(word: value, language: Language.en)
+extension Word {
+    init(_ word: String) {
+        self.init(word: word, language: .en)
     }
 }
