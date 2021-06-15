@@ -44,8 +44,9 @@ public enum Pullback {
         prism: CasePath<GlobalAction, LocalAction>
     ) -> Reducer<GlobalValue, GlobalAction> {
         return { global, action in
-            guard let localAction = prism.extract(from: action) else { return }
-            reducer(&global[keyPath: lens], localAction)
+            guard let localAction = prism.extract(from: action) else { return {} }
+            let effect = reducer(&global[keyPath: lens], localAction)
+            return effect
         }
     }
 
@@ -55,9 +56,9 @@ public enum Pullback {
         prism: Optics.Prism<GlobalAction, LocalAction>
     ) -> Reducer<GlobalValue, GlobalAction> {
         return { global, action in
-            guard let localAction = prism.extract(action) else { return }
+            guard let localAction = prism.extract(action) else { return {} }
             var next = lens.get(global)
-            reducer(&next, localAction)
+            return reducer(&next, localAction)
         }
     }
 }
