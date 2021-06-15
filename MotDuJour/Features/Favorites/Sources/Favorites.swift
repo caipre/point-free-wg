@@ -1,3 +1,4 @@
+import ComposableArchitecture
 import Models
 import SwiftUI
 
@@ -19,13 +20,16 @@ public enum FavoritesAction {
     case didTapRemoveWord(indexSet: IndexSet)
 }
 
-public func reducer(value: inout FavoritesState, action: FavoritesAction) {
+public func reducer(value: inout FavoritesState, action: FavoritesAction) -> Effect {
     switch action {
     case .didTapWord(let word):
-        print("side effect on \(word.word)!")
+        return {
+            print("side effect on \(word.word)!")
+        }
     case .didTapRemoveWord(let indexSet):
         var array = value.favorites[value.language]
         indexSet.forEach { array?.remove(at: $0) }
         value.favorites[value.language] = array
+        return {}
     }
 }

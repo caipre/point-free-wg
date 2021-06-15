@@ -1,3 +1,4 @@
+import ComposableArchitecture
 import Foundation
 import Models
 
@@ -19,11 +20,15 @@ public enum WordAction {
     case didTapWord
 }
 
-public func reducer(value: inout WordState, action: WordAction) {
+public func reducer(value: inout WordState, action: WordAction) -> Effect {
     switch action {
     case .didTapFavorite:
-        print("didTapFavorite")
+        return {
+            print("didTapFavorite")
+        }
     case .didTapWord:
-        print("didTapWord")
+        return {
+            print("didTapWord")
+        }
     }
 }
