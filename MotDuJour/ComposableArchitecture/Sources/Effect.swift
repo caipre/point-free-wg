@@ -1,6 +1,6 @@
 import Combine
 
-public struct Effect<Output>: Publisher {
+public struct PublisherEffect<Output>: Publisher {
     public typealias Failure = Never
 
     let publisher: AnyPublisher<Output, Failure>
@@ -11,24 +11,24 @@ public struct Effect<Output>: Publisher {
     }
 }
 
-extension Effect {
-    public static func fireAndForget(work: @escaping () -> Void) -> Effect {
+extension PublisherEffect {
+    public static func fireAndForget(work: @escaping () -> Void) -> PublisherEffect {
         return Deferred { () -> Empty<Output, Never> in
             work()
             return Empty(completeImmediately: true)
-        }.eraseToEffect()
+        }.eraseToPublisherEffect()
     }
 }
 
 extension Publisher where Failure == Never {
-    public func eraseToEffect() -> Effect<Output> {
-        return Effect(publisher: self.eraseToAnyPublisher())
+    public func eraseToPublisherEffect() -> PublisherEffect<Output> {
+        return PublisherEffect(publisher: self.eraseToAnyPublisher())
     }
 }
 
 extension Publisher where Output == Never, Failure == Never {
-    public func fireAndForget<A>() -> Effect<A> {
-        return self.map(absurd).eraseToEffect()
+    public func fireAndForget<A>() -> PublisherEffect<A> {
+        return self.map(absurd).eraseToPublisherEffect()
     }
 }
 
