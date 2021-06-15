@@ -1,3 +1,4 @@
+import ComposableArchitecture
 import Models
 
 public struct HomeState {
@@ -20,17 +21,26 @@ public enum HomeAction {
 }
 
 
-public func reducer(value: inout Language, action: HomeAction) {
+public func reducer(value: inout Language, action: HomeAction) -> Effect {
     switch action {
     case .didTapLanguage(let language):
         value = language
+        return {}
     case .didTapTodaysWord:
-        print("didTapTodaysWord")
+        return {
+            print("didTapTodaysWord")
+        }
     case .didTapRecentlyViewed:
-        print("didTapRecentlyViewed")
+        return {
+            print("didTapRecentlyViewed")
+        }
     case .didTapFavorites:
-        print("didTapFavorites")
+        return {
+            print("didTapFavorites")
+        }
     case .didTapSearch(let query):
-        print(query)
+        return {
+            print(query)
+        }
     }
 }
