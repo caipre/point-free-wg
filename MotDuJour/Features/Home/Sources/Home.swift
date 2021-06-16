@@ -21,26 +21,38 @@ public enum HomeAction {
 }
 
 
-public func reducer(value: inout Language, action: HomeAction) -> Effect {
+public func reducer(value: inout Language, action: HomeAction) -> [Effect<HomeAction>] {
     switch action {
     case .didTapLanguage(let language):
         value = language
-        return {}
+        return []
     case .didTapTodaysWord:
-        return {
-            print("didTapTodaysWord")
-        }
+        return [
+            {
+                print("didTapTodaysWord")
+                return nil
+            }
+        ]
     case .didTapRecentlyViewed:
-        return {
-            print("didTapRecentlyViewed")
-        }
+        return [
+            {
+                print("didTapRecentlyViewed")
+                return nil
+            }
+        ]
     case .didTapFavorites:
-        return {
-            print("didTapFavorites")
-        }
+        return [
+            {
+                print("didTapFavorites")
+                return nil
+            }
+        ]
     case .didTapSearch(let query):
-        return {
-            print(query)
-        }
+        return [
+            {
+                print(query)
+                return nil
+            }
+        ]
     }
 }

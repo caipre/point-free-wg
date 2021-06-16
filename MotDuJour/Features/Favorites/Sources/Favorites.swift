@@ -20,16 +20,21 @@ public enum FavoritesAction {
     case didTapRemoveWord(indexSet: IndexSet)
 }
 
-public func reducer(value: inout FavoritesState, action: FavoritesAction) -> Effect {
+public func reducer(value: inout FavoritesState, action: FavoritesAction) -> [Effect<
+    FavoritesAction
+>] {
     switch action {
     case .didTapWord(let word):
-        return {
-            print("side effect on \(word.word)!")
-        }
+        return [
+            {
+                print("side effect on \(word.word)!")
+                return nil
+            }
+        ]
     case .didTapRemoveWord(let indexSet):
         var array = value.favorites[value.language]
         indexSet.forEach { array?.remove(at: $0) }
         value.favorites[value.language] = array
-        return {}
+        return []
     }
 }
