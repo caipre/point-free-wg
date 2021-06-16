@@ -20,15 +20,21 @@ public enum WordAction {
     case didTapWord
 }
 
-public func reducer(value: inout WordState, action: WordAction) -> Effect {
+public func reducer(value: inout WordState, action: WordAction) -> [Effect<WordAction>] {
     switch action {
     case .didTapFavorite:
-        return {
-            print("didTapFavorite")
-        }
+        return [
+            {
+                print("didTapFavorite")
+                return .didTapWord
+            }
+        ]
     case .didTapWord:
-        return {
-            print("didTapWord")
-        }
+        return [
+            {
+                print("didTapWord")
+                return nil
+            }
+        ]
     }
 }
