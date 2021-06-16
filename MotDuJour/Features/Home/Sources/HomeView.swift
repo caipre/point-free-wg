@@ -8,13 +8,16 @@ public struct HomeView: View {
     @ObservedObject var store: Store<HomeState, HomeAction>
 
     private let favoritesStore: Store<FavoritesState, FavoritesAction>
+    private let wordStore: Store<WordState, WordAction>
 
     public init(
         store: Store<HomeState, HomeAction>,
-        favoritesStore: Store<FavoritesState, FavoritesAction>
+        favoritesStore: Store<FavoritesState, FavoritesAction>,
+        wordStore: Store<WordState, WordAction>
     ) {
         self.store = store
         self.favoritesStore = favoritesStore
+        self.wordStore = wordStore
     }
 
     @State private var searchQuery: String = ""
@@ -42,7 +45,7 @@ public struct HomeView: View {
                     }
                 NavigationLink(
                     "today's word".localizedCapitalized,
-                    destination: WordDefinitionView()
+                    destination: WordDefinitionView(store: wordStore)
                 )
                 NavigationLink(
                     "Favorites".localizedCapitalized,

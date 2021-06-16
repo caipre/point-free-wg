@@ -1,16 +1,21 @@
+import ComposableArchitecture
 import Languages
 import Models
 import SwiftUI
 
 public struct WordDefinitionView: View {
-    public init() {}
+    @ObservedObject var store: Store<WordState, WordAction>
+
+    public init(store: Store<WordState, WordAction>) {
+        self.store = store
+    }
 
     public var body: some View {
         VStack {
             HStack {
                 Text("Word")
                 Button("*") {
-                    print("star me")
+                    store.send(.didTapFavorite)
                 }
             }
             Spacer()
