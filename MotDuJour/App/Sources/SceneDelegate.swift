@@ -13,6 +13,7 @@ import FavoritesFeature
 import HomeFeature
 import SwiftUI
 import UIKit
+import WordDefinitionFeature
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -39,7 +40,15 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 },
                 action: AppAction.favorites
             )
-            let rootView = HomeView(store: store, favoritesStore: favoritesStore)
+            let wordStore = delegate.store.view(
+                value: { v in WordState(word: nil, favorites: [:]) },
+                action: AppAction.word
+            )
+            let rootView = HomeView(
+                store: store,
+                favoritesStore: favoritesStore,
+                wordStore: wordStore
+            )
             let hostingController = UIHostingController(rootView: rootView)
             window.rootViewController = hostingController
             window.makeKeyAndVisible()
