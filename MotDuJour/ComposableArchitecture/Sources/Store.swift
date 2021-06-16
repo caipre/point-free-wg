@@ -14,8 +14,12 @@ public final class Store<Value, Action>: ObservableObject {
     }
 
     public func send(_ action: Action) {
-        let effect = self.reducer(&self.value, action)
-        effect()
+        let effects = self.reducer(&self.value, action)
+        effects.forEach { effect in
+            if let action = effect() {
+                self.send(action)
+            }
+        }
     }
 
     public func view<LocalValue, LocalAction>(
@@ -27,7 +31,7 @@ public final class Store<Value, Action>: ObservableObject {
             reducer: { (localValue, localAction) in
                 self.send(toGlobalAction(localAction))
                 localValue = toLocalValue(self.value)
-                return {}
+                return []
             }
         )
         return localStore
