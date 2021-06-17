@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import FavoritesFeature
 import HomeFeature
-import Models
+import Languages
 import WordDefinitionFeature
 
 struct AppState: Codable {

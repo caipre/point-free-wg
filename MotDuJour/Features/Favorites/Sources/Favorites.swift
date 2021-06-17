@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import Models
+import Languages
 import SwiftUI
 
 public struct FavoritesState {

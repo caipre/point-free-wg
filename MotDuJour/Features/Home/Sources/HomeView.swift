@@ -1,6 +1,6 @@
 import ComposableArchitecture
 import FavoritesFeature
-import Models
+import Languages
 import SwiftUI
 import WordDefinitionFeature
 

@@ -1,5 +1,5 @@
 import Fuzzy
-import Models
+import Languages
 
 public struct Result: Hashable {
     public let word: Word

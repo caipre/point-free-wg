@@ -45,7 +45,6 @@ let p = Project(
                 .target(name: "SearchFeature"),
                 .target(name: "WordDefinitionFeature"),
                 .target(name: "Languages"),
-                .target(name: "Models"),
                 .target(name: "ComposableArchitecture"),
             ]
         ),
@@ -92,15 +91,6 @@ let p = Project(
         ),
 
         Target(
-            name: "Models",
-            platform: .iOS,
-            product: .staticLibrary,
-            bundleId: "pointfree.motdujour",
-            infoPlist: .default,
-            sources: ["Models/Sources/**"]
-        ),
-
-        Target(
             name: "ComposableArchitecture",
             platform: .iOS,
             product: .staticLibrary,
@@ -136,7 +126,7 @@ func Feature(_ name: String, dependencies: [TargetDependency] = []) -> Target {
     dependencies.append(contentsOf: [
         .package(product: "CasePaths"),
         .target(name: "ComposableArchitecture"),
-        .target(name: "Models"),
+        .target(name: "Languages"),
     ])
     return Target(
         name: name.appending("Feature"),

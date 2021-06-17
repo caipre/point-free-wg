@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import Models
+import Languages
 
 public struct HomeState {
     public var language: Language

@@ -1,6 +1,6 @@
 import ComposableArchitecture
 import Foundation
-import Models
+import Languages
 
 public struct WordState {
     public let word: Word?

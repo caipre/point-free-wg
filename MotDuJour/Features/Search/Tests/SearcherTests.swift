@@ -1,4 +1,4 @@
-import Models
+import Languages
 import XCTest
 
 @testable import SearchFeature

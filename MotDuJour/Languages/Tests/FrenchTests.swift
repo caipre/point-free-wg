@@ -2,15 +2,15 @@ import XCTest
 
 @testable import Languages
 
-class FrenchTests: XCTestCase {
+class CorpusTests: XCTestCase {
     var decoder: JSONDecoder!
 
     override func setUp() {
         decoder = JSONDecoder()
     }
 
-    func testThatItIsDecodable() {
-        let fr = Loaders.load(type: French.self, resource: "fr.json")
+    func testThatFrenchIsDecodable() {
+        let fr = Loaders.load(type: Corpus.self, resource: "fr.json")
         XCTAssert(!fr.records.isEmpty)
     }
 }

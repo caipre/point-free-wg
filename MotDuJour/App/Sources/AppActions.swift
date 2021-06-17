@@ -1,6 +1,7 @@
 import ComposableArchitecture
 import FavoritesFeature
 import HomeFeature
+import Languages
 import WordDefinitionFeature
 
 enum AppAction {
@@ -8,10 +9,13 @@ enum AppAction {
     case home(HomeAction)
     case favorites(FavoritesAction)
     case word(WordAction)
+
+    case loaded(Corpus)
 }
 
 // Leaving this here so we don't forget.
 enum AppDelegateAction {
+    case didFinishLaunching
     case willTerminate
 }
 

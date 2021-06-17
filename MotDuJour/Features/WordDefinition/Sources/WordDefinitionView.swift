@@ -1,6 +1,5 @@
 import ComposableArchitecture
 import Languages
-import Models
 import SwiftUI
 
 public struct WordDefinitionView: View {
@@ -29,5 +28,5 @@ public struct WordDefinitionView: View {
 struct WordDefinitionViewModel {
     let word: Word
     let favorited: Bool
-    let record: French.Record
+    let record: Corpus.Record
 }

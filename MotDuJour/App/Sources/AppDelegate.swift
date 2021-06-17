@@ -1,4 +1,3 @@
-
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation; either version 2 of the License, or
@@ -15,14 +14,15 @@ import UIKit
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let store = Store<AppState, AppAction>(
-        with: AppState(),
-        reducer: AppReducer.appReducer
-    )
+    var store: Store<AppState, AppAction> = {
+        Store(with: AppState(), reducer: AppReducer.composedReducer)
+    }()
+
     func application(
         _: UIApplication,
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        store.send(.app(.didFinishLaunching))
         return true
     }
 
@@ -40,13 +40,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-//       This is what we want to say:
-//       store.send(.willTerminate)
-
-        // But for now, we do it the naive way:
-        let data = try! JSONEncoder().encode(self.store.value)
-        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let favoritePrimesUrl = documentsUrl.appendingPathComponent("app-state.json")
-        try! data.write(to: favoritePrimesUrl)
+        store.send(.app(.willTerminate))
     }
 }
