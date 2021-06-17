@@ -24,16 +24,15 @@ public func reducer(value: inout WordState, action: WordAction) -> [Effect<WordA
     switch action {
     case .didTapFavorite:
         return [
-            {
+            { callback in
                 print("didTapFavorite")
-                return .didTapWord
+                callback(.didTapWord)
             }
         ]
     case .didTapWord:
         return [
-            {
+            { _ in
                 print("didTapWord")
-                return nil
             }
         ]
     }

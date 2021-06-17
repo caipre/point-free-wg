@@ -26,9 +26,8 @@ public func reducer(value: inout FavoritesState, action: FavoritesAction) -> [Ef
     switch action {
     case .didTapWord(let word):
         return [
-            {
+            { _ in
                 print("side effect on \(word.word)!")
-                return nil
             }
         ]
     case .didTapRemoveWord(let indexSet):
