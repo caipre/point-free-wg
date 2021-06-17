@@ -26,8 +26,10 @@ enum Counter {
         switch action {
         case .inc:
             state.value += 1
+            return []
         case .dec:
             state.value -= 1
+            return []
         }
     }
 }
@@ -46,8 +48,10 @@ enum Timer {
         switch action {
         case .start:
             state.value = Date()
+            return []
         case .stop:
             state.value = nil
+            return []
         }
     }
 }
