@@ -28,30 +28,26 @@ public func reducer(value: inout Language, action: HomeAction) -> [Effect<HomeAc
         return []
     case .didTapTodaysWord:
         return [
-            {
+            { _ in
                 print("didTapTodaysWord")
-                return nil
             }
         ]
     case .didTapRecentlyViewed:
         return [
-            {
+            { _ in
                 print("didTapRecentlyViewed")
-                return nil
             }
         ]
     case .didTapFavorites:
         return [
-            {
+            { _ in
                 print("didTapFavorites")
-                return nil
             }
         ]
     case .didTapSearch(let query):
         return [
-            {
+            { _ in
                 print(query)
-                return nil
             }
         ]
     }

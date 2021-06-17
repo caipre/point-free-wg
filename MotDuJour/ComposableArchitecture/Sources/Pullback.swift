@@ -47,9 +47,8 @@ public enum Pullback {
             guard let localAction = prism.extract(from: action) else { return [] }
             let localEffects = reducer(&global[keyPath: lens], localAction)
             return localEffects.map { localEffect in
-                return { () -> GlobalAction? in
-                    guard let localAction = localEffect() else { return nil }
-                    return prism.embed(localAction)
+                return { callback in
+                    localEffect { localAction in callback(prism.embed(localAction)) }
                 }
             }
         }
@@ -66,9 +65,8 @@ public enum Pullback {
             let localEffects = reducer(&nextValue, localAction)
 
             return localEffects.map { localEffect in
-                return { () -> GlobalAction? in
-                    guard let localAction = localEffect() else { return nil }
-                    return prism.embed(localAction)
+                return { callback in
+                    localEffect { localAction in callback(prism.embed(localAction)) }
                 }
             }
         }
