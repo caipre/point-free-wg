@@ -16,7 +16,7 @@ public final class Store<Value, Action>: ObservableObject {
     public func send(_ action: Action) {
         let effects = self.reducer(&self.value, action)
         effects.forEach { effect in
-            effect(self.send)
+            effect.run(self.send)
         }
     }
 
