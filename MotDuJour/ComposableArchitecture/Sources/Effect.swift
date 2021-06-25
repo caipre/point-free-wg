@@ -1,4 +1,49 @@
 import Combine
+import Foundation
+
+public struct Effect<Action> {
+    public let run: (@escaping (Action) -> Void) -> Void
+
+    public init(run: @escaping (@escaping (Action) -> Void) -> Void) {
+        self.run = run
+    }
+
+    public func map<B>(_ f: @escaping (Action) -> B) -> Effect<B> {
+        return Effect<B> { callback in
+            self.run { action in
+                callback(f(action))
+            }
+        }
+    }
+
+    public func then(_ action: Action) -> Effect<Action> {
+        self.run { _ in }
+        return Effect { callback in
+            callback(action)
+        }
+    }
+}
+
+extension Effect {
+    public func receive(on queue: DispatchQueue) -> Effect {
+        return Effect { callback in
+            self.run { a in
+                queue.async {
+                    callback(a)
+                }
+            }
+        }
+    }
+}
+
+extension Effect {
+    public static func print(message: String) -> Effect {
+        return Effect { callback in
+            Swift.print(message)
+        }
+    }
+}
+
 
 public struct PublisherEffect<Output>: Publisher {
     public typealias Failure = Never
