@@ -16,10 +16,29 @@ public struct Effect<Action> {
         }
     }
 
-    public func then(_ action: Action) -> Effect<Action> {
-        self.run { _ in }
-        return Effect { callback in
-            callback(action)
+    public func then<A2>(_ effect: Effect<A2>, queue: DispatchQueue = .main) -> Effect<(Action, A2)>
+    {
+        return Effect<(Action, A2)> { callback in
+            let group = DispatchGroup()
+
+            var a: Action!
+            var b: A2!
+
+            group.enter()
+            self.run { action in
+                a = action
+                group.leave()
+            }
+
+            group.enter()
+            effect.run { a2 in
+                b = a2
+                group.leave()
+            }
+
+            group.notify(queue: queue) {
+                callback((a, b))
+            }
         }
     }
 }
@@ -40,6 +59,18 @@ extension Effect {
     public static func print(message: String) -> Effect {
         return Effect { callback in
             Swift.print(message)
+        }
+    }
+
+    public static func save() -> Effect {
+        return Effect { callback in
+            Swift.print("I'm saving!")
+        }
+    }
+
+    public static func fetch() -> Effect {
+        return Effect { callback in
+            Swift.print("I'm fetching!")
         }
     }
 }

@@ -23,7 +23,13 @@ public enum WordAction {
 public func reducer(value: inout WordState, action: WordAction) -> [Effect<WordAction>] {
     switch action {
     case .didTapFavorite:
-        return [Effect.print(message: "didTapFavorite").then(.didTapWord)]
+        let print = Effect<WordAction>.print(message: "didTapFavorite")
+        let save = Effect<WordAction>.save()
+        let chained = print.then(save)
+        let combined = chained.map { a1, a2 -> WordAction in
+            return a1
+        }
+        return [combined]
     case .didTapWord:
         return [.print(message: "didTapWord")]
     }
